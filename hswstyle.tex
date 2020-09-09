@@ -1,0 +1,48 @@
+%Copyright (c) 2019-2020 Lukas Hein
+
+%Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+%THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+% Nur der Nachname in der Formatierung
+\DeclareNameFormat{lastname}{\usebibmacro{name:family}{\namepartfamily}{}{}{}\usebibmacro{name:andothers}}
+
+% Autoren formatieren
+\DeclareDelimFormat*{multinamedelim}{/}
+\DeclareDelimFormat*{finalnamedelim}{/}
+\DeclareNameAlias{sortname}{family-given}
+\DefineBibliographyStrings{german}{
+andothers = {et al.},
+}
+
+% Formatierung entfernen
+\DeclareFieldFormat[book,incollection,article,online,report]{title}{#1}
+\DeclareFieldFormat{journaltitle}{#1}
+\DeclareFieldFormat{booktitle}{#1}
+\DeclareFieldFormat{url}{#1}
+\DeclareFieldFormat{urldate}{#1}
+
+% bildet Monographie ab
+\DeclareBibliographyDriver{book}{
+\usebibmacro{author}:\\
+\printfield{title}, \printfield{edition}, \printlist{publisher}.\newline}
+
+% bildet Sammelwerkbeiträge ab
+\DeclareBibliographyDriver{incollection}{
+\usebibmacro{author}:\\
+\printfield{title}; in: \printnames{editor} (Hrsg.), \printfield{booktitle}, \printlist{publisher}, \printfield{pages}.\newline}
+
+% bildet Zeitschriftenartikel ab
+\DeclareBibliographyDriver{article}{
+\usebibmacro{author}:\\
+\printfield{title}; in: \printfield{journaltitle}, \printfield{volume}. Jahrgang, Heft: \printfield{number}, \printfield{pages}.\newline}
+
+% bildet Internetquellen ab
+\DeclareBibliographyDriver{online}{
+\usebibmacro{author}:\\
+\printfield{title}, \printfield{url}, Stand: \printurldate.\newline}
+
+% bildet öffentliche betriebliche Quellen ab
+\DeclareBibliographyDriver{report}{
+\usebibmacro{author}:\\
+\printfield{title}.\newline}
