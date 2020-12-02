@@ -30,11 +30,11 @@ Verbesserungsvorschläge werden gerne entgegengenommen.
 
 ## Maintainer
 
-Das bin (ich)[https://github.com/randomC0der].
+Das bin [ich](https://github.com/randomC0der).
 
 ## Danksagung
 
-Ein großes Dankeschön geht an (PhoenixKarton)[https://github.com/PhoenixKarton], der seine eigene Version verwendet und Feedback gegeben hat.
+Ein großes Dankeschön geht an [PhoenixKarton](https://github.com/PhoenixKarton), der seine eigene Version verwendet und Feedback gegeben hat.
 
 ## Lizenz
 
