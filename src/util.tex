@@ -2,8 +2,15 @@
 
 % Markiert einen Text rot (z.B. weil die Stelle noch überarbeitet werden muss)
 % #1: Text
-\newcommand{\hswtodo}[1]{%
+\newcommand{\todo}[1]{%
     {\color{red}#1}%
 }
 
+\newcommand{\VglFlg}{%
+    Vgl. hierzu und im Folgenden
+}
 
+%Befehle footnotecaption für Abbildungen
+\newcommand{\footnotecaption}[1]{%
+    \caption[#1]{#1\footnotemark}%
+}

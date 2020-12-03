@@ -12,11 +12,13 @@
 \DeclareDelimFormat*{finalnamedelim}{/}
 \DeclareNameAlias{sortname}{family-given}
 \DefineBibliographyStrings{german}{
-andothers = {et al.},
+    andothers = {et al.},
+    nodate = {o.J.},
 }
 
 % Formatierung entfernen
 \DeclareFieldFormat[book,incollection,article,online,report]{title}{#1}
+\DeclareFieldFormat{journal}{#1}
 \DeclareFieldFormat{journaltitle}{#1}
 \DeclareFieldFormat{booktitle}{#1}
 \DeclareFieldFormat{url}{#1}

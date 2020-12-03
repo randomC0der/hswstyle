@@ -1,0 +1,39 @@
+% Basiert auf biblatex.def und markiert im Falle eines fehlenden Eintrags dies.
+
+% The \iffieldundef{journaltitleaddon} is usually not necessary.
+% We need it to ensure that a \setunit* after this macro does the right thing
+% for backwards compatibility.
+\renewbibmacro*{journal}{%
+  \ifboolexpr{
+    test {\iffieldundef{journaltitle}}
+    and
+    test {\iffieldundef{journalsubtitle}}
+  }
+    {\todo{journal}} % <--
+    {\printtext[journaltitle]{%
+       \printfield[titlecase]{journaltitle}%
+       \setunit{\subtitlepunct}%
+       \printfield[titlecase]{journalsubtitle}}%
+     \newunit}%
+  \iffieldundef{journaltitleaddon}
+    {}
+    {\printfield{journaltitleaddon}}}
+
+\renewbibmacro*{author}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {\printnames{author}%
+     \iffieldundef{authortype}
+       { (\bibstring{nodate})} % <--
+       {\setunit{\printdelim{authortypedelim}}%
+        \usebibmacro{authorstrg}}}
+    {}}
+
+\newcommand{\failsafePrintfield}[1]{%
+  \iffieldundef{#1}%
+    {\todo{#1}}%
+    {\printfield{#1}}%
+}
