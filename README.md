@@ -38,4 +38,6 @@ Ein großes Dankeschön geht an [PhoenixKarton](https://github.com/PhoenixKarton
 
 ## Lizenz
 
-ISC Copyright (c) 2019-2020 Lukas Hein
+zlib Copyright (c) 2019-2020 Lukas Hein
+
+Die PDF zählt als Binärprogramm, also kann es für wissenschaftliche Arbeiten verwendet werden.
