@@ -30,10 +30,18 @@
        { (\bibstring{nodate})} % <--
        {\setunit{\printdelim{authortypedelim}}%
         \usebibmacro{authorstrg}}}
-    {}}
+    {\todo{author}}} % <---
+
+%%%%%
 
 \newcommand{\failsafePrintfield}[1]{%
   \iffieldundef{#1}%
     {\todo{#1}}%
     {\printfield{#1}}%
+}
+
+\newcommand{\failsafePrintlist}[1]{%
+  \iflistundef{#1}%
+    {\todo{#1}}%
+    {\printlist{#1}}%
 }
