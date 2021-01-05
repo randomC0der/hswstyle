@@ -11,6 +11,9 @@
     andothers = {et al.},
     nodate = {o.J.},
 }
+\DefineBibliographyStrings{english}{
+    andothers = {et al.},
+}
 
 % Formatierung entfernen
 \DeclareFieldFormat[book,incollection,article,online,report]{title}{#1}
@@ -20,27 +23,53 @@
 \DeclareFieldFormat{url}{#1}
 \DeclareFieldFormat{urldate}{#1}
 
+% für einfache Quellenangaben
+\DeclareCiteCommand{\hswcite}[\mkbibfootnote]
+{\quad\usebibmacro{prenote}} % z.B. Vgl.
+{\usebibmacro{citeindex}\usebibmacro{shortauthor}} % z.B. Mustermann (2016)
+{} % multicitedelim
+{\usebibmacro{postnote}} % Seitenzahl
+
+% Wird für die Fußnoten für Bilder verwendet 
+\DeclareCiteCommand{\hswfncite}[\mkbibfootnotetext]
+{\quad\usebibmacro{prenote}} % z.B. Vgl.
+{\usebibmacro{citeindex}\usebibmacro{shortauthor}} % z.B. Mustermann (2016)
+{} % multicitedelim
+{\usebibmacro{postnote}} % Seitenzahl
+
+% für mehrere Quellenangaben in einer Fußnote
+\DeclareMultiCiteCommand{\hswcites}[\mkbibfootnote]
+{\hswcite}{\multicitedelim}
+
+\DeclareMultiCiteCommand{\hswfncites}[\mkbibfootnotetext]
+{\hswfncite}{\multicitedelim}
+
 % bildet Monographie ab
-\DeclareBibliographyDriver{book}{
-\usebibmacro{author}:\\
-\printfield{title}, \printfield{edition}, \printlist{publisher}.\newline}
+\DeclareBibliographyDriver{book}{%
+    \usebibmacro{author}:\\%
+        \failsafePrintfield{title}, \iffieldundef{edition}{\mkbibordedition{1}~\bibstring{edition}}{\printfield{edition}}, \failsafePrintlist{publisher}.\newline%
+}
 
 % bildet Sammelwerkbeiträge ab
-\DeclareBibliographyDriver{incollection}{
-\usebibmacro{author}:\\
-\printfield{title}; in: \printnames{editor} (Hrsg.), \printfield{booktitle}, \printlist{publisher}, \printfield{pages}.\newline}
+\DeclareBibliographyDriver{incollection}{%
+    \usebibmacro{author}:\\%
+        \failsafePrintfield{title}; in: \usebibmacro{editor}, \failsafePrintfield{booktitle}, \failsafePrintlist{publisher}, \failsafePrintfield{pages}.\newline%
+}
 
 % bildet Zeitschriftenartikel ab
-\DeclareBibliographyDriver{article}{
-\usebibmacro{author}:\\
-\printfield{title}; in: \printfield{journaltitle}, \printfield{volume}. Jahrgang, Heft: \printfield{number}, \printfield{pages}.\newline}
+\DeclareBibliographyDriver{article}{%
+    \usebibmacro{author}:\\%
+        \failsafePrintfield{title}; in: \usebibmacro{journal}, \iffieldundef{volume}{o.Jg.}{\printfield{volume}. Jahrgang}, Heft: \failsafePrintfield{number}, \failsafePrintfield{pages}.\newline%
+}
 
 % bildet Internetquellen ab
-\DeclareBibliographyDriver{online}{
-\usebibmacro{author}:\\
-\printfield{title}, \printfield{url}, Stand: \printurldate.\newline}
+\DeclareBibliographyDriver{online}{%
+    \usebibmacro{author}:\\%
+        \failsafePrintfield{title}, \failsafePrintfield{url}, Stand: \iffieldundef{urlyear}{\today}{\printurldate}.\newline%
+}
 
 % bildet öffentliche betriebliche Quellen ab
-\DeclareBibliographyDriver{report}{
-\usebibmacro{author}:\\
-\printfield{title}.\newline}
+\DeclareBibliographyDriver{report}{%
+    \usebibmacro{author}:\\%
+        \failsafePrintfield{title}.\newline%
+}
