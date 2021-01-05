@@ -19,18 +19,42 @@
     {}
     {\printfield{journaltitleaddon}}}
 
+%%%%%
+
+% #1: \printnames
+\newcommand{\printAuthor}[1]{%
+  #1%
+  \iffieldundef{authortype}
+    {\setunit{\printdelim{nameyeardelim}}}
+    {\setunit{\printdelim{authortypedelim}}}%
+  \iffieldundef{authortype}
+    {}
+    {\usebibmacro{authorstrg}\setunit{\printdelim{nameyeardelim}}}
+}
+
+%%%%%
+
+% In bibliography
 \renewbibmacro*{author}{%
   \ifboolexpr{
     test \ifuseauthor
     and
     not test {\ifnameundef{author}}
   }
-    {\printnames{author}%
-     \iffieldundef{authortype}
-       { (\bibstring{nodate})} % <--
-       {\setunit{\printdelim{authortypedelim}}%
-        \usebibmacro{authorstrg}}}
-    {\todo{author}}} % <---
+    {\printAuthor{\printnames{author}}}%
+    {\todo{author} \setunit*{\printdelim{nonameyeardelim}}}%
+  \usebibmacro{date+extradate}}
+
+% In footnotes
+\newbibmacro*{shortauthor}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {\printAuthor{\printnames[lastname]{author}}}%
+    {\todo{author} \setunit*{\printdelim{nonameyeardelim}}}%
+  \usebibmacro{date+extradate}}
 
 %%%%%
 
