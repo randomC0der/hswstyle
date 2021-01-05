@@ -34,6 +34,20 @@
 
 %%%%%
 
+\renewbibmacro*{editor}{%
+  \ifboolexpr{
+    test \ifuseeditor
+    and
+    not test {\ifnameundef{editor}}
+  }
+    {\printnames{editor}%
+     \space%\setunit{\printdelim{editortypedelim}} % <---
+     (\usebibmacro{editorstrg})% <--
+     \clearname{editor}}
+    {\todo{editor}}} % <---
+
+%%%%%
+
 \newcommand{\failsafePrintfield}[1]{%
   \iffieldundef{#1}%
     {\todo{#1}}%
