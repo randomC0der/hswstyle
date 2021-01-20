@@ -6,11 +6,28 @@
     {\color{red}#1}%
 }
 
-\newcommand{\VglFlg}{%
-    Vgl. hierzu und im Folgenden
+\newcommand{\Vgl}{%
+    Vgl.
 }
 
-%Befehle footnotecaption für Abbildungen
+\newcommand{\VglFlg}{%
+    \Vgl hierzu und im Folgenden
+}
+
+\newcommand{\IAa}{%
+    In Anlehnung an
+}
+
+\newcommand{\oJ}{%
+    o.J.%
+}
+
+\newcommand{\oS}{%
+    o.S.%
+}
+
+% Shortcut für Unterschriften von Abbildungen
+% #1: Text
 \newcommand{\footnotecaption}[1]{%
     \caption[#1]{#1\footnotemark}%
 }
