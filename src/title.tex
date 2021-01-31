@@ -1,0 +1,57 @@
+\providecommand{\insertauthor}{}
+\providecommand{\inserttitle}{}
+
+\AtEndDocument{
+  \hypersetup{
+    pdftitle    = \inserttitle,
+    pdfauthor   = \insertauthor
+  }
+}
+
+\newcommand{\hswtitlesec}[1]{
+    \noindent\textbf{\textit{\large #1}}
+}
+
+% #1: Beginn des Semesterzeitraumes
+% #2: Ende des Semesterzeitraumes
+\newcommand{\hswdate}[2]{
+    \date{(Zeitraum von #1 bis #2)}
+}
+
+\providecommand{\studycourse}{}
+\providecommand{\studygroup}{}
+\providecommand{\company}{}
+
+\newcommand{\makehswtitle}[2]{
+
+% \addcontentsline{toc}{section}{Titelblatt}
+\pagenumbering{gobble}
+\makeatletter
+
+\begin{titlepage}
+\theauthor
+
+\vfill
+
+\hswtitlesec{Hochschule Weserbergland} \\
+Studiengang: \studycourse \\
+Studiengruppe: \studygroup \\
+Dozent: #1
+
+\vfill
+
+\hswtitlesec{Transferarbeit für Semester #2} \\
+\thedate \\\\
+Thema: \\
+\thetitle
+
+\vfill
+
+\hswtitlesec{Praxispartner} \\
+\company
+
+\vfill
+
+\end{titlepage}
+\makeatother
+}
