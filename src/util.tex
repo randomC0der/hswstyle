@@ -7,23 +7,23 @@
 }
 
 \newcommand{\Vgl}{%
-    Vgl.
+    \iflanguage{ngerman}{Vgl.}{}%
 }
 
 \newcommand{\VglFlg}{%
-    \Vgl hierzu und im Folgenden
+    \iflanguage{ngerman}{\Vgl{} hierzu und im Folgenden}{}%
 }
 
 \newcommand{\IAa}{%
-    In Anlehnung an
+\iflanguage{ngerman}{In Anlehnung an}{\todo{In Anlehnung an}}%
 }
 
-\newcommand{\oJ}{%
-    o.J.%
+\newcommand{\eD}{%
+    ~\iflanguage{ngerman}{Eigene Darstellung}{\todo{Eigene Darstellung}}.%
 }
 
 \newcommand{\oS}{%
-    o.S.%
+    \iflanguage{ngerman}{o.S}{}%Zweiter Punkt wird in hswcite gesetzt, english hat kein Äquivalent
 }
 
 % Shortcut für Unterschriften von Abbildungen
